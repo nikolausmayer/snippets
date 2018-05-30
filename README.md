@@ -15,8 +15,8 @@ Table of Contents
 FFmpeg
 ======
 
-Videos from and to frame images
--------------------------------
+Images → Video
+--------------
 
 * <code>ffmpeg -f image2 -i frame_%04d.png movie.avi</code><br/>
   Convert frames to video.
@@ -27,4 +27,14 @@ Videos from and to frame images
 * <code>ffmpeg -f image2 <b>-start_number 10</b> -i frame_%04d.png movie__start_at_frame_10.avi</code><br/>
   Convert frames to video, starting at file `frame_0010.png`. This is useful if the input frames do not start at a low number such as 0 or 1: ffmpeg will actively search for the first frame, but it will not do so very eagerly and give up soon.
 
+Video → Images
+--------------
+* <code>ffmpeg -i movie.avi -f image2 output_frame_%04d.png</code><br/>
+  Convert video frames to image files.
+
+Video manipulation
+------------------
+
+* <code>ffmpeg -i movie.avi -vf scale=iw*0.5:-1 -q:v 0 half_resolution_movie.avi</code><br/>
+  Resample video to half-width (`iw*0.5`). The height is automatically computed to keep the aspect ratio constant (`:-1`).
 
