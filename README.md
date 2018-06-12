@@ -11,6 +11,7 @@ Table of Contents
 
 * [ffmpeg](#ffmpeg)
 * [shell](#shell)
+* [Docker](#docker)
 * [Sources](#sources)
 
 
@@ -60,6 +61,20 @@ Print every <i>n</i>-th line of a file
 * We negate this truthiness using `!(NR%n)`. 
 * (Double quotes also work instead of the single quotes used in this example.)
 
+
+
+
+Docker
+======
+
+Image/container management
+--------------------------
+These commands require that the user is in the `docker` group; else put a `sudo` in front of each `docker`.
+
+* <code>docker rmi \`docker images -f "dangling=true" -q\`</code>
+  Remove images which are no longer needed by any other image
+* <code>docker stop \`docker ps -a -q\`</code>
+  Stop all containers. With `rm` instead of `stop`: Remove all containers.
 
 
 
