@@ -46,11 +46,15 @@ Shell
 
 Simple `for`-loop
 -----------------
-<code>i=0; while test $i -lt 10; do echo $i; let i=`expr $i + 1`; done</code>
+<code>i=0; while test $i -lt 10; do echo $i; i=`` `expr $i + 1` ``; done</code>
+* `i=0` initializes the variable `$i` to zero.
+* `while ...; do ...; done` is the loop.
+* `test $i -lt 10` is `i < 10` (`-lt` is "<i>l</i>ess <i>t</i>han"). In bash, you can use `[ $i -lt 10 ]` instead.
+* `` `expr $i + 1` `` increments `$i`. 
 
 Print every <i>n</i>-th line of a file
 --------------------------------------
-<code>awk '!(NR%<b><u>n</u></b>)' file</code><br/>
+<code>awk '!(NR%<b><i>n</i></b>)' file</code><br/>
 * `NR` contains the line index. 
 * `NR%n` is a modulo on that index and evaluates to `true` if if is != 0, i.e. if a line is <i>not</i> an <i>n</i>-th line.
 * We negate this truthiness using `!(NR%n)`. 
