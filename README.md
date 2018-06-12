@@ -10,6 +10,8 @@ Table of Contents
 =================
 
 * [ffmpeg](#ffmpeg)
+* [shell](#shell)
+* [Sources](#sources)
 
 
 FFmpeg
@@ -17,7 +19,6 @@ FFmpeg
 
 Images → Video
 --------------
-
 * <code>ffmpeg -f image2 -i frame_%04d.png movie.avi</code><br/>
   Convert frames to video.
 * <code>ffmpeg -f image2 -i frame_%04d.png <b>-q:v 0</b> movie__good_quality.avi</code><br/>
@@ -34,7 +35,33 @@ Video → Images
 
 Video manipulation
 ------------------
-
 * <code>ffmpeg -i movie.avi -vf scale=iw*0.5:-1 -q:v 0 half_resolution_movie.avi</code><br/>
-  Resample video to half-width (`iw*0.5`). The height is automatically computed to keep the aspect ratio constant (`:-1`).
+  Resample video (`-vf scale=...`) to half-width (`iw*0.5`). The height is automatically computed to keep the aspect ratio constant (`:-1`). Keeps video quality (`-q:v 0`). `-vf` is short for `-filter:v`, the "video filter" function.
+
+
+
+
+Shell
+=====
+
+Simple `for`-loop
+-----------------
+<code>i=0; while test $i -lt 10; do echo $i; let i=`expr $i + 1`; done</code>
+
+Print every <i>n</i>-th line of a file
+--------------------------------------
+<code>awk '!(NR%<b><u>n</u></b>)' file</code><br/>
+* `NR` contains the line index. 
+* `NR%n` is a modulo on that index and evaluates to `true` if if is != 0, i.e. if a line is <i>not</i> an <i>n</i>-th line.
+* We negate this truthiness using `!(NR%n)`. 
+* (Double quotes also work instead of the single quotes used in this example.)
+
+
+
+
+
+
+Sources
+=======
+* http://www.theunixschool.com/2012/12/how-to-print-every-nth-line-in-file-in.html
 
