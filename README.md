@@ -3,8 +3,8 @@ snippets
 
 A (poorly) curated list of awesome codes and commands that do Magic™. Mostly command line. All Linux.
 
-![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)
-![awesome](https://img.shields.io/badge/awesome-yes-yellow.svg)
+![LICENSE](img/license-MIT-blue.svg)
+![awesome](img/awesome-yes-yellow.svg)
 
 Table of Contents
 =================
