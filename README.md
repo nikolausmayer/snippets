@@ -79,10 +79,10 @@ Print every <i>n</i>-th line of a file
 `grep`
 ------
 * Logical "OR"<br/>
-  <code>grep "pattern1\|pattern2" filename</code><br/>
+  <code>grep "pattern1\\|pattern2" filename</code><br/>
 * Logical "AND"<br/>
-  There is no AND in grep. It can be emulated via<br/>
-  <code>grep "pattern1.*pattern2\|pattern2.*pattern1" filename</code>
+  There is no AND in grep, but it can be emulated via<br/>
+  <code>grep "pattern1.*pattern2\\|pattern2.*pattern1" filename</code>
 
 
 
