@@ -10,8 +10,10 @@ Table of Contents
 =================
 
 * [ffmpeg](#ffmpeg)
-* [shell](#shell)
+* [shell (also includes `grep` etc)](#shell)
+* [git](#git)
 * [Docker](#docker)
+* [Python](#python)
 * [Sources](#sources)
 
 
@@ -76,13 +78,30 @@ Print every <i>n</i>-th line of a file
 * We negate this truthiness using `!(NR%n)`. 
 * (Double quotes also work instead of the single quotes used in this example.)
 
-`grep`
-------
+grep
+----
 * Logical "OR"<br/>
   <code>grep "pattern1\\|pattern2" filename</code><br/>
 * Logical "AND"<br/>
   There is no AND in grep, but it can be emulated via<br/>
   <code>grep "pattern1.*pattern2\\|pattern2.*pattern1" filename</code>
+
+
+Git
+===
+
+Wrong commit message
+--------------------
+<code>git <b>--amend</b> ...files... -m "new message"</code>
+
+Undo `git add` <i>before</i> commit
+-----------------------------------
+<code>git reset HEAD -- ...wrongly added files...</code>
+
+Undo `git add` <i>after</i> commit (but <i>before</i>push!)
+-----------------------------------------------------------
+<code>git reset HEAD^</code><br/>
+This resets your pointer to the previous commit. Afterwards you can `git add` and then `git commit` again.
 
 
 
@@ -100,9 +119,13 @@ These commands require that the user is in the `docker` group; else put a `sudo`
 
 
 
+Python
+======
+
+Create a new VirtualEnv
+-----------------------
+* Python2: `virtualenv -p python2 my-virtualenv-folder`
+* Python3 (needs package `python3-venv`): `python3 -m venv my-virtualenv-folder`
 
 
-Sources
-=======
-* http://www.theunixschool.com/2012/12/how-to-print-every-nth-line-in-file-in.html
-* https://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/
+
