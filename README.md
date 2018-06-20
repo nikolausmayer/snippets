@@ -76,6 +76,13 @@ Print every <i>n</i>-th line of a file
 * We negate this truthiness using `!(NR%n)`. 
 * (Double quotes also work instead of the single quotes used in this example.)
 
+`grep`
+------
+* Logical "OR"
+  <code>grep "pattern1\|pattern2" filename</code><br/>
+* Logical "AND"
+  There is no AND in grep. It can be emulated via
+  <code>grep "pattern1.*pattern2\|pattern2.*pattern1" filename</code>
 
 
 
@@ -98,4 +105,4 @@ These commands require that the user is in the `docker` group; else put a `sudo`
 Sources
 =======
 * http://www.theunixschool.com/2012/12/how-to-print-every-nth-line-in-file-in.html
-
+* https://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/
