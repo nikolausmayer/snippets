@@ -14,7 +14,6 @@ Table of Contents
 * [git](#git)
 * [Docker](#docker)
 * [Python](#python)
-* [Sources](#sources)
 
 
 FFmpeg
@@ -46,6 +45,19 @@ Video manipulation
   * The height is automatically computed to keep the aspect ratio constant (`:-1`). 
   * Keeps video quality (`-q:v 0`). 
   * `-vf` is short for `-filter:v`, the "video filter" function.
+
+Transcoding videos into another codec
+-------------------------------------
+
+* <code>ffmpeg -i INPUT_VIDEO -vcodec libtheora -qscale:v 10 OUTPUT_VIDEO.ogv</code><br/>
+  * `-vcodec libtheora` selects the free <b>[Theora](https://en.wikipedia.org/wiki/Theora)</b> video codec.
+  * `-qscale:v 10` requests the highest (scale 0-10) image quality.
+  * (This requires an FFmpeg installation with libtheora support. Check if the output of `ffmpeg` contains `--enable-libtheora` in the `configuration` line)
+
+* <code>ffmpeg -i INPUT_VIDEO -vcodec libx264 -crf 23 OUTPUT_VIDEO.mkv</code>
+  * `libx264` selects the free encoder for the <b>[h264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC)</b> codec.
+  * `-crf` stands for "Constant Rate Factor" and selects an image quality setting. `23` is the default setting; possible settings are 0-51 where lower numbers are higher quality.
+  * (This requires an FFmpeg installation with libx264 support. Check if the output of `ffmpeg` contains `--enable-libx264` in the `configuration` line)
 
 Recording screencasts
 ---------------------
@@ -90,7 +102,7 @@ grep
 Git
 ===
 
-Wrong commit message
+Correct a wrong commit message
 --------------------
 <code>git <b>--amend</b> ...files... -m "new message"</code>
 
@@ -98,7 +110,7 @@ Undo `git add` <i>before</i> commit
 -----------------------------------
 <code>git reset HEAD -- ...wrongly added files...</code>
 
-Undo `git add` <i>after</i> commit (but <i>before</i>push!)
+Undo `git add` <i>after</i> commit (but <i>before</i> push!)
 -----------------------------------------------------------
 <code>git reset HEAD^</code><br/>
 This resets your pointer to the previous commit. Afterwards you can `git add` and then `git commit` again.
@@ -126,6 +138,5 @@ Create a new VirtualEnv
 -----------------------
 * Python2: `virtualenv -p python2 my-virtualenv-folder`
 * Python3 (needs package `python3-venv`): `python3 -m venv my-virtualenv-folder`
-
 
 
