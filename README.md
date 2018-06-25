@@ -14,6 +14,7 @@ Table of Contents
 * [git](#git)
 * [Docker](#docker)
 * [Python](#python)
+* [.deb files](#deb-files)
 
 
 FFmpeg
@@ -140,3 +141,8 @@ Create a new VirtualEnv
 * Python3 (needs package `python3-venv`): `python3 -m venv my-virtualenv-folder`
 
 
+.deb Files
+==========
+
+* <code>ar x ARCHIV.deb</code><br/>
+  This unpacks a `.deb` archive file. Useful if some software is self-contained and can be used locally without <i>installing</i> the software.
