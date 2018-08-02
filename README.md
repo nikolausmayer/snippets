@@ -10,6 +10,7 @@ Table of Contents
 =================
 
 * [ffmpeg](#ffmpeg)
+* [.bashrc](#bashrc)
 * [shell (also includes `grep` etc)](#shell)
 * [git](#git)
 * [Docker](#docker)
@@ -70,6 +71,21 @@ Recording screencasts
     * My 2 monitors have the same `$DISPLAY`, so to record the right screen I shift the recording window by 1600 pixels to the right (and 0 pixels in vertical direction) using `+1600,0`.
   * `-c:v libx264 -crf 23` is the video codec selection. Any other option will work as well.
 
+
+.bashrc
+=======
+
+Better history search
+---------------------
+
+```
+bind '"\e[A": history-search-backward';
+bind '"\e[B": history-search-forward';
+```
+
+This binds the UP/DOWN arrow keys to history search with autocompletion.
+
+**This is my number one ```.bashrc``` productivity hack.**
 
 
 Shell
