@@ -115,6 +115,28 @@ grep
   There is no AND in grep, but it can be emulated via<br/>
   <code>grep "pattern1.*pattern2\\|pattern2.*pattern1" filename</code>
 
+Information about files
+-----------------------
+* **General information**
+  * `file <file>`<br>
+    Print file type information.
+  
+* **Images**
+  * `identify -format '%w x %h\n' <image>`<br>
+    Print image dimensions. `%w x %h` prints e.g. `640 x 480`. `identify` is a part of ImageMagick.
+
+Reduce PDF file size
+--------------------
+`gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/prepress -sOutputFile=<OUTPUT> <INPUT>`<br>
+This uses `ghostscript` to downsample and compress images in the PDF (among other things; I'm not quite sure what exactly this command does).
+
+Search-and-replace recursively in a folder
+------------------------------------------
+`find . -type f -print0 | xargs -0 sed -i 's/$SEARCH_TERM/$REPLACE_TERM/g'`
+
+**Warning: This is a powerful and potentially dangerous command.**
+
+This replaces `$SEARCH_TERM` by `$REPLACE_TERM` in all files within the current directory.
 
 Git
 ===
