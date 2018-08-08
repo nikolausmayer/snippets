@@ -71,6 +71,38 @@ Recording screencasts
     * My 2 monitors have the same `$DISPLAY`, so to record the right screen I shift the recording window by 1600 pixels to the right (and 0 pixels in vertical direction) using `+1600,0`.
   * `-c:v libx264 -crf 23` is the video codec selection. Any other option will work as well.
 
+Video-in-video montage
+----------------------
+```
+ffmpeg -i first_input_video.avi
+       -i second_input_video.avi 
+       -loop 1 -i alpha_mask.png
+       -filter_complex "[2:v]alphaextract,split[part1][part2];
+                        [1:v][part1]alphamerge[top];
+                        [0:v][part2]alphamerge[bottom];
+                        [top][bottom]overlay"
+       -qscale:v 0 video-montage.avi
+```
+This command takes 2 input videos and 1 alpha mask image, and output an overlay video, something like this:
+```
+AAAAAAAAAAA   BBBBBBBBBBB   00000000000   AAAAAAAAAAA
+AAAAAAAAAAA + BBBBBBBBBBB + 00000011111 = AAAAAABBBBB
+AAAAAAAAAAA   BBBBBBBBBBB   11111111111   BBBBBBBBBBB
+  
+   first         second        alpha         output
+   video         video         mask          video
+```
+
+* `-i first_input_video.avi`, `-i second_input_video.avi` are the video inputs; the order is important
+* `-i alpha_mask.png` is an image whose alpha channel will be used to determine where which input video is visible.<br>
+  Since the other inputs are videos (with many frames) and this image has only a single frame, we have to tell ffmpeg that this alpha mask should be used for all video frames. This is what `-loop 1` *before* the image input does.
+* `-filter_complex` is where the magic happens. It takes a series of commands which are processed in-order. The output of the last command in the chain is the output of the whole filter complex.
+  * `[2:v]` is "the video channel of the input with index 2". Inputs are 0-indexed, so `[2:v]` is our alpha mask image (which was turned into a video stream by the `-loop 1` option above). `alphaextract` isolates the image's alpha channel and discards the rest of the image, and `split` turns the alpha channel into two outputs: a foreground mask and a background mask. We give these newly produced masks names (so we can refer to them later) using `[part1][part2]`.
+  * `[1:v]` is the video part of `second_input_video.avi`. `[part1]` refers to one of the masks produced by the previous step. We need both because the `alphamerge` operation requires an input stream and a mask stream. It produces a masked video which we call `[top]`.
+  * Same here: combine `first_input_video.avi` and the `[part2]` mask into a masked video which we call `[bottom]`.
+  * Now we combine the `[top]` and `[bottom]` masked videos into one single video using the `overlay` directive. We do not give the output of this command a name because we do not need to process it any further within the `filter_complex`.
+* `-qscale:v 0` finally specifies that we want a high-quality video when we write out `video-montage.avi`.
+
 
 .bashrc
 =======
