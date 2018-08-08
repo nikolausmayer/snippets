@@ -24,7 +24,7 @@ FFmpeg
 Images → Video
 --------------
 * <code>ffmpeg -f image2 -i frame_%04d.png movie.avi</code><br/>
-  Convert frames to video.
+  Convert frames `frame_0000.png, frame_0001.png...` to video.
 * <code>ffmpeg -f image2 -i frame_%04d.png <b>-q:v 0</b> movie__good_quality.avi</code><br/>
   Convert frames to *good quality* video. 
   * `-q` is a shorthand for `-qscale`. 
