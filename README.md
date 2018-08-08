@@ -83,7 +83,7 @@ ffmpeg -i first_input_video.avi
                         [top][bottom]overlay"
        -qscale:v 0 video-montage.avi
 ```
-This command takes 2 input videos and 1 alpha mask image, and output an overlay video, something like this:
+This command takes 2 input videos and 1 alpha mask image, and produces an overlay video, something like this:
 ```
 AAAAAAAAAAA   BBBBBBBBBBB   00000000000   AAAAAAAAAAA
 AAAAAAAAAAA + BBBBBBBBBBB + 00000011111 = AAAAAABBBBB
@@ -93,7 +93,7 @@ AAAAAAAAAAA   BBBBBBBBBBB   11111111111   BBBBBBBBBBB
    video         video         mask          video
 ```
 
-* `-i first_input_video.avi`, `-i second_input_video.avi` are the video inputs; the order is important
+* `-i first_input_video.avi`, `-i second_input_video.avi` are the input videos; the order is important!
 * `-i alpha_mask.png` is an image whose alpha channel will be used to determine where which input video is visible.<br>
   Since the other inputs are videos (with many frames) and this image has only a single frame, we have to tell ffmpeg that this alpha mask should be used for all video frames. This is what `-loop 1` *before* the image input does.
 * `-filter_complex` is where the magic happens. It takes a series of commands which are processed in-order. The output of the last command in the chain is the output of the whole filter complex.
