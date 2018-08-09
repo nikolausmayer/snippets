@@ -211,7 +211,13 @@ Python
 Create a new VirtualEnv
 -----------------------
 * Python2: `virtualenv -p python2 my-virtualenv-folder`
-* Python3 (needs package `python3-venv`): `python3 -m venv my-virtualenv-folder`
+* With Python3, the preferred way is: (needs package `python3-venv`): `python3 -m venv my-virtualenv-folder`
+
+Drop to an interactive prompt from within a script
+--------------------------------------------------
+```import code; code.interact(local=locals())```
+
+This line starts an interactive console with access to all variables of that line's scope. When the interactive console is closed, the interpreter continues running the rest of the script. **Any changes made in the interactive console will persist.**
 
 
 .deb Files
