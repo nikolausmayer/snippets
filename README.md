@@ -179,11 +179,11 @@ Correct a wrong commit message
 
 Undo `git add` <i>before</i> commit
 -----------------------------------
-<code>git reset HEAD -- ...wrongly added files...</code>
+<code>git <b>reset HEAD</b> -- WRONGLY_ADDED_FILE</code>
 
 Undo `git add` <i>after</i> commit (but <i>before</i> push!)
 -----------------------------------------------------------
-<code>git reset HEAD^</code><br/>
+<code>git <b>reset HEAD^</b></code><br/>
 This resets your pointer to the previous commit. Afterwards you can `git add` and then `git commit` again.
 
 Undo `git add` <i>after</i> push
