@@ -12,6 +12,7 @@ Table of Contents
 * [ffmpeg](#ffmpeg)
 * [.bashrc](#bashrc)
 * [shell (also includes `grep` etc)](#shell)
+* [diff and patch](#diff-and-patch)
 * [git](#git)
 * [Docker](#docker)
 * [Python](#python)
@@ -169,6 +170,30 @@ Search-and-replace recursively in a folder
 **Warning: This is a powerful and potentially dangerous command.**
 
 This replaces `$SEARCH_TERM` by `$REPLACE_TERM` in all files within the current directory.
+
+diff and patch
+==============
+
+Create patchfile
+----------------
+
+<code>diff -c old_file new_file > patch_from_old_to_new_file</code>
+
+* This creates a patchfile from the differences between `old_file` and `new_file`. 
+* The `-c` option makes `diff` produce more "verbose" differences by including <u>c</u>ontext information around the diffs.
+
+Apply patchfile
+---------------
+
+<code>patch -i patch_from_old_to_new_file</code>
+
+* This applies the patchfile created in the previous step. 
+* The patchfile contains information about the filename from which it was created, so in this example: if the target file is called `old_file` and is also in the current $PWD, this will automatically apply the patch to that file (it's actually somewhat more complex: see `man patch`).
+* If the files do not match, use <br>
+  <code>patch <b>another_file</b> -i patch_from_old_to_new_file</code>
+* To produce another file instead of patching in-place, use <br>
+  <code>patch another_file -i patch_from_old_to_new_file <b>-o patched_file</b></code>
+  
 
 Git
 ===
