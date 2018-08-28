@@ -120,13 +120,24 @@ This binds the UP/DOWN arrow keys to history search with autocompletion.
 
 **This is my number one ```.bashrc``` productivity hack.**
 
+Default permissions for new files/folders
+-----------------------------------------
+```
+umask 027
+```
+
+With this in the `.bashrc`, newly created files get the permission set ``rw-r-----` (640) and newly created folders get `rwxr-x---` (750) (the argument for `umask` specifies which permissions get <i>blocked</i>).
+
 
 Shell
 =====
 
 Simple `for`-loop
 -----------------
-<code>i=0; while test $i -lt 10; do echo $i; i=\`expr $i + 1\`; done</code>
+```
+i=0; while test $i -lt 10; do echo $i; i=`expr $i + 1`; done
+```
+
 * `i=0` initializes the variable `$i` to zero.
 * `while ...; do ...; done` is the loop.
 * `test $i -lt 10` is `i < 10` (`-lt` is "<i>l</i>ess <i>t</i>han"). In bash shells, you can use `[ $i -lt 10 ]` instead.
