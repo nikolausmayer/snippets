@@ -104,6 +104,12 @@ AAAAAAAAAAA   BBBBBBBBBBB   11111111111   BBBBBBBBBBB
   * Now we combine the `[top]` and `[bottom]` masked videos into one single video using the `overlay` directive. We do not give the output of this command a name because we do not need to process it any further within the `filter_complex`.
 * `-qscale:v 0` finally specifies that we want a high-quality video when we write out `video-montage.avi`.
 
+Fix WebM/VP9 color channels
+-----------------------
+<pre><code>ffmpeg [input from PNG frames] <b>-pix_fmt yuv420p</b> -codec:v libvpx-vp9 output_video.webm</code></pre>
+
+My ffmpeg produces wrong colors when rendering a video from input frames. This `-pix_fmt` option fixes that.
+
 
 .bashrc
 =======
