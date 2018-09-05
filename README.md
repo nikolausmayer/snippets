@@ -82,7 +82,8 @@ ffmpeg -i first_input_video.avi
                         [1:v][part1]alphamerge[top];
                         [0:v][part2]alphamerge[bottom];
                         [top][bottom]overlay"
-       -qscale:v 0 video-montage.avi
+       -qscale:v 0 
+       video-montage.avi
 ```
 This command takes 2 input videos and 1 alpha mask image, and produces an overlay video, something like this:
 ```
