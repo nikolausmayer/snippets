@@ -133,7 +133,7 @@ Default permissions for new files/folders
 umask 027
 ```
 
-With this in the `.bashrc`, newly created files get the permission set ``rw-r-----` (640) and newly created folders get `rwxr-x---` (750) (the argument for `umask` specifies which permissions get <i>blocked</i>).
+With this in the `.bashrc`, newly created files get the permission set `rw-r-----` (640) and newly created folders get `rwxr-x---` (750) (the argument for `umask` specifies which permissions get <i>blocked</i>).
 
 
 Shell
