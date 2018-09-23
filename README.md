@@ -220,6 +220,12 @@ Correct a wrong commit message
 --------------------
 <code>git <b>--amend</b> ...files... -m "new message"</code>
 
+Undo accidental `--amend` commit
+--------------------------------
+<code>git reset --soft HEAD@{1}</code><br/>
+Afterwards, redo the commit (preferentially without `--amend` this time).
+Credit: [StackOverflow](https://stackoverflow.com/a/1459264)
+
 Undo `git add` <i>before</i> commit
 -----------------------------------
 <code>git <b>reset HEAD</b> -- WRONGLY_ADDED_FILE</code>
