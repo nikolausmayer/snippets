@@ -15,6 +15,7 @@ Table of Contents
 * [diff and patch](#diff-and-patch)
 * [git](#git)
 * [Docker](#docker)
+* [GCC basics](#gcc-basics)
 * [Python](#python)
 * [.deb files](#deb-files)
 
@@ -251,6 +252,74 @@ These commands require that the user is in the `docker` group; else put a `sudo`
   Remove images which are no longer needed by any other image
 * <code>docker stop \`docker ps -a -q\`</code><br/>
   Stop all containers. With `rm` instead of `stop`, this <i>removes</i> all containers.
+
+
+GCC basics
+==========
+
+Assume the following codebase, where `main.cpp` include `#include "class.h"` and uses code from `class.cpp`.
+```
+$ ls
+class.cpp  class.h  main.cpp
+```
+
+Compilation and static linking in one step
+------------------------------------------
+```
+$ g++ class.cpp main.cpp -o my-app
+$ ls 
+class.cpp  class.h  main.cpp  my-app
+```
+
+
+Compilation and static linking
+------------------------------
+
+* Step 1: Compile object files from source code
+```
+$ g++ -c class.cpp -o class.o
+$ g++ -c main.cpp -o main.o
+$ ls
+class.cpp  class.h  class.o  main.cpp  main.o
+```
+* Step 2: Link object files into executable
+```
+$ g++ main.o class.o -o my-app
+$ ls
+class.cpp  class.h  class.o  main.cpp  main.o  my-app
+$ ldd my-app
+        linux-vdso.so.1 [...]
+        libc.so.6 [...]
+        /lib64/ld-linux-x86-64.so.2 [...]
+```
+
+Compilation and dynamic linking
+------------------------------
+
+* Step 1: Compile object files from source code
+```
+$ g++ -c class.cpp -o class.o
+$ g++ -c main.cpp -o main.o
+$ ls
+class.cpp  class.h  class.o  main.cpp  main.o
+```
+* Step 2: Create shared object file
+```
+$ g++ -shared class.o -o class.so
+$ ls
+class.cpp  class.h  class.o  class.so  main.cpp  main.o
+```
+* Step 3: Link object files into executable
+```
+$ g++ main.o class.so -o my-app
+$ ls
+class.cpp  class.h  class.o  class.so  main.cpp  main.o  my-app
+$ ldd my-app
+        linux-vdso.so.1 [...]
+        class.so [...]
+        libc.so.6 [...]
+        /lib64/ld-linux-x86-64.so.2 [...]
+```
 
 
 
