@@ -257,7 +257,7 @@ These commands require that the user is in the `docker` group; else put a `sudo`
 GCC basics
 ==========
 
-Assume the following codebase, where `main.cpp` include `#include "class.h"` and uses code from `class.cpp`.
+Assume the following codebase, where `main.cpp` includes `#include "class.h"` and uses code from `class.cpp`.
 ```
 $ ls
 class.cpp  class.h  main.cpp
