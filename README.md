@@ -252,6 +252,10 @@ These commands require that the user is in the `docker` group; else put a `sudo`
   Remove images which are no longer needed by any other image
 * <code>docker stop \`docker ps -a -q\`</code><br/>
   Stop all containers. With `rm` instead of `stop`, this <i>removes</i> all containers.
+  
+Freezing OpenGL windows
+-----------------------
+My Docker+nvidia-docker2+nvidia/cudagl container setup freezes as soon as any OpenGL-using application opened a window, even `glxgears`. This problem was solved by <b>disabling</b> the "Allow Flipping" option in the `nvidia-settings` manager → "X Screen 0" tab → "OpenGL Settings" menu.
 
 
 GCC basics
