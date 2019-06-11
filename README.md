@@ -345,6 +345,13 @@ This line starts an interactive console with access to all variables of that lin
 .deb Files
 ==========
 
+Installing .deb files
+---------------------
+* <code>dpkg -i software.deb</code>
+  This installs software from a local `.deb` file. Unlike `apt`, this command does not automatically pull the necessary dependencies. This can typically be repaired using `apt-get --fix-broken install`.
+
+Unpacking .deb files locally
+----------------------------
 * <code>ar x ARCHIV.deb</code><br/>
   This unpacks a `.deb` archive file. Useful if some software is self-contained and can be used locally without <i>installing</i> the software.
   * <code>tar xfJ data.tar.xz</code><br/>
