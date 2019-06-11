@@ -347,8 +347,8 @@ This line starts an interactive console with access to all variables of that lin
 
 Installing .deb files
 ---------------------
-* <code>dpkg -i software.deb</code>
-  This installs software from a local `.deb` file. Unlike `apt`, this command does not automatically pull the necessary dependencies. This can typically be repaired using `apt-get --fix-broken install`.
+* <code>dpkg -i software.deb</code><br/>
+  This installs software from a local `.deb` file. Unlike `apt`, this command does not automatically pull the necessary dependencies. This can typically be repaired using `apt-get --fix-broken install`. Note that software installed with `dpkg -i` can still be uninstalled with `apt-get remove`.
 
 Unpacking .deb files locally
 ----------------------------
