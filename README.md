@@ -347,5 +347,5 @@ This line starts an interactive console with access to all variables of that lin
 
 * <code>ar x ARCHIV.deb</code><br/>
   This unpacks a `.deb` archive file. Useful if some software is self-contained and can be used locally without <i>installing</i> the software.
-  * <code>unxz data.tar.xz</code><br/>
-    The `ar x` command typically results in `.xz`-compressed tarfiles. Inflate using `unxz`.
+  * <code>tar xfJ data.tar.xz</code><br/>
+    The `ar x` command typically results in `.xz`-compressed tarfiles. Inflate using `unxz`, or `tar`'s `-J` flag.
