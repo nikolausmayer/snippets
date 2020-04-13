@@ -74,9 +74,10 @@ Cut video
 Transcoding videos into another codec
 -------------------------------------
 
-* <code>ffmpeg -i INPUT_VIDEO -vcodec libtheora -qscale:v 10 OUTPUT_VIDEO.ogv</code><br/>
-  * `-vcodec libtheora` selects the free "libtheora" codec for the <b>[Theora](https://en.wikipedia.org/wiki/Theora)</b> video format.
+* <code>ffmpeg -i INPUT_VIDEO -vcodec libtheora -qscale:v 10 -c:a copy OUTPUT_VIDEO.ogv</code><br/>
+  * `-vcodec libtheora` selects the free "libtheora" codec for the <b>[Theora](https://en.wikipedia.org/wiki/Theora)</b> video format. The option `-vcodec` is equivalent to `-c:v`.
   * `-qscale:v 10` requests the highest (scale 0-10) image quality.
+  * `-c:a copy` copies the audio stream without changes.
   * (This requires an FFmpeg installation with libtheora support. Check if the output of `ffmpeg` contains `--enable-libtheora` in the `configuration` line)
 
 * <code>ffmpeg -i INPUT_VIDEO -vcodec libx264 -crf 23 OUTPUT_VIDEO.mkv</code>
