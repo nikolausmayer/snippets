@@ -42,13 +42,34 @@ Video → Images
 * <code>ffmpeg -i movie.avi -f image2 output_frame_%04d.png</code><br/>
   Convert video frames to image files.
 
-Video manipulation
-------------------
+Video rescaling
+---------------
 * <code>ffmpeg -i movie.avi -vf scale=iw*0.5:-1 -q:v 0 half_resolution_movie.avi</code><br/>
   Resample video (`-vf scale=...`) to half-width (`iw*0.5`). 
   * The height is automatically computed to keep the aspect ratio constant (`:-1`). 
   * Keeps video quality (`-q:v 0`). 
   * `-vf` is short for `-filter:v`, the "video filter" function.
+  
+Video cropping
+--------------
+* <code>ffmpeg -i movie.avi <b>-filter:v "crop=640:480:100:0"</b> cropped-movie.avi</code><br>
+  Cut a `640x480` cropout from a video. The crop is placed `100` pixels from the left edge, and `0` pixels from the top edge.
+
+Change video playback speed
+---------------------------
+* <code>ffmpeg <b>-r 48</b> -i movie.avi <b>-r 24</b> movie-twice-as-fast.avi</code><br>
+  Speed up or slow down a video.
+  * The `-r` option in front(!) of the `-i` input specifies the assumed framerate at which the input video should be played back. This is a bit unintuitive: In the example, if `movie.avi` is actually a 24 fps video, this command will <i>play it back at double speed (48 fps) and record a new video at 24 fps</i>.
+  * The `-r` option at the output specifies the output's encoding framerate. The default is 24 frames per second.
+  * If the output's `-r` option is omitted, the output will be stored as a video with <b>all</b> input frames, along with the annotation that it is a 48 fps video. Doing this does not reduce the storage size of the output video. If the output's `-r` option is used, only those frames that match this framerate are kept.
+  
+Cut video
+---------
+* <code>ffmpeg -i movie.avi <b>-ss 00:10:00 -to 00:12:00</b> scene-from-movie.avi</code><br>
+  Cut the segment between the timestamps 10m00s and 12m00s into a standalone video.
+* <code>ffmpeg -i movie.avi <b>-ss 00:10:00 -t 120</b> scene-from-movie.avi</code><br>
+  Cut a 120 second segment starting at timestamp 10m00s.
+  
 
 Transcoding videos into another codec
 -------------------------------------
