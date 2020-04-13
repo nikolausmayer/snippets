@@ -75,12 +75,12 @@ Transcoding videos into another codec
 -------------------------------------
 
 * <code>ffmpeg -i INPUT_VIDEO -vcodec libtheora -qscale:v 10 OUTPUT_VIDEO.ogv</code><br/>
-  * `-vcodec libtheora` selects the free <b>[Theora](https://en.wikipedia.org/wiki/Theora)</b> video codec.
+  * `-vcodec libtheora` selects the free "libtheora" codec for the <b>[Theora](https://en.wikipedia.org/wiki/Theora)</b> video format.
   * `-qscale:v 10` requests the highest (scale 0-10) image quality.
   * (This requires an FFmpeg installation with libtheora support. Check if the output of `ffmpeg` contains `--enable-libtheora` in the `configuration` line)
 
 * <code>ffmpeg -i INPUT_VIDEO -vcodec libx264 -crf 23 OUTPUT_VIDEO.mkv</code>
-  * `libx264` selects the free encoder for the <b>[h264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC)</b> codec.
+  * `libx264` selects the free encoder for the <b>[h264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC)</b> format.
   * `-crf` stands for "Constant Rate Factor" and selects an image quality setting. `23` is the default setting; possible settings are 0-51 where lower numbers are higher quality.
   * (This requires an FFmpeg installation with libx264 support. Check if the output of `ffmpeg` contains `--enable-libx264` in the `configuration` line)
 
