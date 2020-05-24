@@ -204,6 +204,12 @@ Reduce PDF file size
 `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/prepress -sOutputFile=<OUTPUT> <INPUT>`<br>
 This uses `ghostscript` to downsample and compress images in the PDF (among other things; I'm not quite sure what exactly this command does).
 
+For stronger compression, you can specify the downsampling mode and resolution for embedded images:
+`gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/prepress -dColorImageDownsampleType=/Bicubic -dColorImageResolution=288 -dPrinted=false -sOutputFile=OUTPUT.pdf INPUT.pdf`
+
+If you need an extra small document and can live with low resolution images, try this:
+`gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/prepress -dColorImageDownsampleType=/Bicubic -dColorImageResolution=144 -dPrinted=false -sOutputFile=OUTPUT.pdf INPUT.pdf`
+
 Search-and-replace recursively in a folder
 ------------------------------------------
 `find . -type f -print0 | xargs -0 sed -i 's/$SEARCH_TERM/$REPLACE_TERM/g'`
