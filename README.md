@@ -81,7 +81,7 @@ Transcoding videos into another codec
   * (This requires an FFmpeg installation with libtheora support. Check if the output of `ffmpeg` contains `--enable-libtheora` in the `configuration` line)
 
 * <code>ffmpeg -i INPUT_VIDEO -vcodec libx264 -crf 23 OUTPUT_VIDEO.mkv</code>
-  * `libx264` selects the free encoder for the <b>[h264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC)</b> format.
+  * `libx264` selects the free encoder for the <b>[H.264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC)</b> format.
   * `-crf` stands for "Constant Rate Factor" and selects an image quality setting. `23` is the default setting; possible settings are 0-51 where lower numbers are higher quality.
   * (This requires an FFmpeg installation with libx264 support. Check if the output of `ffmpeg` contains `--enable-libx264` in the `configuration` line)
 
@@ -276,9 +276,9 @@ Image/container management
 --------------------------
 These commands require that the user is in the `docker` group; else put a `sudo` in front of each `docker`.
 
-* <code>docker rmi \`docker images -f "dangling=true" -q\`</code><br/>
+* <code>docker image rm \`docker image list -f "dangling=true" -q\`</code><br/>
   Remove images which are no longer needed by any other image
-* <code>docker stop \`docker ps -a -q\`</code><br/>
+* <code>docker container stop \`docker container ps -a -q\`</code><br/>
   Stop all containers. With `rm` instead of `stop`, this <i>removes</i> all containers.
   
 Freezing OpenGL windows
